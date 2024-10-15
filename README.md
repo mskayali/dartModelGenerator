@@ -35,3 +35,22 @@ Given the following input JSON:
   "theme_id": 19,
   "order": 1
 }
+```
+Exemple dart code:
+```dart
+void main() {
+  String modelName = 'MyModel';
+  String jsonString = '''
+  {
+    "key1": "value1",
+    "key2": 123,
+    "key3": null
+  }
+  ''';
+
+  Map<String, dynamic> jsonInput = jsonDecode(jsonString);
+  String modelCode = generateModel(modelName, jsonInput);
+  
+  print(modelCode);
+}
+```
