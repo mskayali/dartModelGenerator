@@ -62,6 +62,13 @@ class JsonToDartModel {
     buffer.writeln('    return data;');
     buffer.writeln('  }');
 
+    // Add toString method that converts toJson() to string
+    buffer.writeln();
+    buffer.writeln('  @override');
+    buffer.writeln('  String toString() {');
+    buffer.writeln('    return toJson().toString();');
+    buffer.writeln('  }');
+    
     // End the class definition
     buffer.writeln('}');
 
