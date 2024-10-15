@@ -1,39 +1,37 @@
-<!--
-This README describes the package. If you publish this package to pub.dev,
-this README's contents appear on the landing page for your package.
+# Dart Model Generator from JSON
 
-For information about how to write a good package README, see the guide for
-[writing package pages](https://dart.dev/tools/pub/writing-package-pages).
-
-For general information about developing packages, see the Dart guide for
-[creating packages](https://dart.dev/guides/libraries/create-packages)
-and the Flutter guide for
-[developing packages and plugins](https://flutter.dev/to/develop-packages).
--->
-
-TODO: Put a short description of the package here that helps potential users
-know whether this package might be useful for them.
+This Dart project generates Dart model classes from a given JSON structure. It takes a JSON object as input and outputs a Dart class with:
+- Fields that match the JSON structure
+- A constructor
+- `fromJson` method for parsing JSON into the model
+- `toJson` method for serializing the model back to JSON
+- Handles null safety, allowing fields and the JSON input itself to be null.
 
 ## Features
 
-TODO: List what your package can do. Maybe include images, gifs, or videos.
+- Automatically converts snake_case JSON keys into camelCase Dart field names.
+- Supports `int`, `double`, `String`, `bool`, and `dynamic` types.
+- Nullable fields (`?`) for null safety.
+- Optional inclusion of fields when serializing if the field is `null`.
 
-## Getting started
+## How It Works
 
-TODO: List prerequisites and provide or point to information on how to
-start using the package.
+1. **Field Types**: The generator automatically infers the field types (e.g., `int`, `String`) from the JSON values.
+2. **Null Safety**: All fields are nullable (`int?`, `String?`) to handle incomplete or null JSON data.
+3. **fromJson Method**: This method converts a JSON object into the Dart model, with null checks for each field.
+4. **toJson Method**: This method converts the Dart model back to JSON, excluding null fields.
 
-## Usage
+## Example
 
-TODO: Include short and useful examples for package users. Add longer examples
-to `/example` folder.
+Given the following input JSON:
 
-```dart
-const like = 'sample';
-```
-
-## Additional information
-
-TODO: Tell users more about the package: where to find more information, how to
-contribute to the package, how to file issues, what response they can expect
-from the package authors, and more.
+```json
+{
+  "id": 9,
+  "disabled": 0,
+  "type": "default",
+  "description": "1",
+  "title": "1",
+  "theme_id": 19,
+  "order": 1
+}
