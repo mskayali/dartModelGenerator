@@ -26,31 +26,34 @@ This Dart project generates Dart model classes from a given JSON structure. It t
 Given the following input JSON:
 
 ```json
-{
-  "id": 9,
-  "disabled": 0,
-  "type": "default",
-  "description": "1",
-  "title": "1",
-  "theme_id": 19,
-  "order": 1
-}
+  {
+    "key1": "value1",
+    "key2": 123,
+    "key3": null,
+    "key4": true,
+    "key5": 0.3
+  }
 ```
 Exemple dart code:
 ```dart
+import 'dart:convert';
+
 void main() {
   String modelName = 'MyModel';
   String jsonString = '''
   {
     "key1": "value1",
     "key2": 123,
-    "key3": null
+    "key3": null,
+    "key4": true,
+    "key5": 0.3
   }
   ''';
 
   Map<String, dynamic> jsonInput = jsonDecode(jsonString);
-  String modelCode = generateModel(modelName, jsonInput);
-  
+  String modelCode = JsonToDartModel(modelName: modelName, jsonInput: jsonInput)
+      .generateModel();
+
   print(modelCode);
 }
 ```
