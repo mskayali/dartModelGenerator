@@ -57,3 +57,49 @@ void main() {
   print(modelCode);
 }
 ```
+
+Autput will be:
+```dart
+class MyModel {
+  String? key1;
+  int? key2;
+  dynamic key3;
+  bool? key4;
+  double? key5;
+  MyModel({this.key1, this.key2, this.key3, this.key4, this.key5, });
+
+  factory  MyModel.fromJson(Map<String, dynamic>? json) => MyModel(
+    key1 : json?['key1'],
+    key2 : json?['key2'],
+    key3 : json?['key3'],
+    key4 : json?['key4'],
+    key5 : json?['key5'],
+  );
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    if (this.key1 != null) {
+      data['key1'] = this.key1;
+    }
+    if (this.key2 != null) {
+      data['key2'] = this.key2;
+    }
+    if (this.key3 != null) {
+      data['key3'] = this.key3;
+    }
+    if (this.key4 != null) {
+      data['key4'] = this.key4;
+    }
+    if (this.key5 != null) {
+      data['key5'] = this.key5;
+    }
+    return {"MyModel":data};
+  }
+
+  @override
+  String toString() {
+    return toJson().toString();
+  }
+}
+
+```
