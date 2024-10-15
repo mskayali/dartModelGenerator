@@ -34,7 +34,7 @@ Given the following input JSON:
     "key5": 0.3
   }
 ```
-Exemple dart code:
+Example dart code:
 ```dart
 import 'dart:convert';
 
@@ -58,7 +58,7 @@ void main() {
 }
 ```
 
-Autput will be:
+Output will be:
 ```dart
 class MyModel {
   String? key1;
