@@ -1,1 +1,12 @@
-TODO: Add your license here.
+
+### Key Sections in the README:
+- **Introduction**: Explains what the project does.
+- **Features**: Lists the key features, including null safety and field conversion.
+- **How It Works**: Brief explanation of how the generator works.
+- **Example**: Shows an example of the generated Dart model.
+- **Usage**: Instructions on how to use the project.
+- **Customization**: Mentions potential enhancements.
+- **Contributing**: Information for those who want to contribute.
+- **License**: License details (e.g., MIT).
+
+Let me know if you'd like to adjust any parts of the `README`!
