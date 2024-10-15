@@ -11,16 +11,6 @@ class JsonToDartModel {
   String generateModel() {
     StringBuffer buffer = StringBuffer();
 
-//     buffer.writeln("import 'dart:convert';");
-//     buffer.writeln();
-
-//     buffer.writeln(
-//         " $modelName ${modelName.replaceFirst(modelName[0], modelName[0].toLowerCase())}FromJson(String str) => $modelName.fromJson(json.decode(str));");
-//     buffer.writeln(
-//         ' String ${modelName.replaceFirst(modelName[0], modelName[0].toLowerCase())}ToJson($modelName data) => json.encode(data.toJson());');
-
-//     buffer.writeln();
-
     // Start the class definition
     buffer.writeln("class $modelName {");
 
