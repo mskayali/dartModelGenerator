@@ -1,14 +1,25 @@
 library json_to_dart_model;
 
-/// A Calculator.
 class JsonToDartModel {
   String modelName;
   Map<String, dynamic> jsonInput;
+  bool addName;
 
-  JsonToDartModel({required this.modelName, required this.jsonInput});
+  JsonToDartModel(
+      {required this.modelName, required this.jsonInput, this.addName = true});
 
   String generateModel() {
     StringBuffer buffer = StringBuffer();
+
+//     buffer.writeln("import 'dart:convert';");
+//     buffer.writeln();
+
+//     buffer.writeln(
+//         " $modelName ${modelName.replaceFirst(modelName[0], modelName[0].toLowerCase())}FromJson(String str) => $modelName.fromJson(json.decode(str));");
+//     buffer.writeln(
+//         ' String ${modelName.replaceFirst(modelName[0], modelName[0].toLowerCase())}ToJson($modelName data) => json.encode(data.toJson());');
+
+//     buffer.writeln();
 
     // Start the class definition
     buffer.writeln("class $modelName {");
@@ -25,7 +36,8 @@ class JsonToDartModel {
       } else if (value is bool) {
         fieldType = 'bool?';
       } else {
-        fieldType = 'dynamic'; // Fallback to dynamic for unknown or complex types
+        fieldType =
+            'dynamic'; // Fallback to dynamic for unknown or complex types
       }
 
       String fieldName = key.contains('_') ? _snakeToCamel(key) : key;
@@ -42,24 +54,26 @@ class JsonToDartModel {
 
     // Add fromJson method with null safety checks
     buffer.writeln();
-    buffer.writeln('  $modelName.fromJson(Map<String, dynamic>? json) {');
+    buffer.writeln(
+        '  factory  $modelName.fromJson(Map<String, dynamic>? json) => $modelName(');
     jsonInput.forEach((key, value) {
       String fieldName = key.contains('_') ? _snakeToCamel(key) : key;
-      buffer.writeln("    $fieldName = json?['$key'];");
+      buffer.writeln("    $fieldName : json?['$key'],");
     });
-    buffer.writeln('  }');
+    buffer.writeln('  );');
 
     // Add toJson method with null checks
     buffer.writeln();
     buffer.writeln('  Map<String, dynamic> toJson() {');
-    buffer.writeln('    final Map<String, dynamic> data = new Map<String, dynamic>();');
+    buffer.writeln(
+        '    final Map<String, dynamic> data = new Map<String, dynamic>();');
     jsonInput.forEach((key, value) {
       String fieldName = key.contains('_') ? _snakeToCamel(key) : key;
       buffer.writeln("    if (this.$fieldName != null) {");
       buffer.writeln("      data['$key'] = this.$fieldName;");
       buffer.writeln("    }");
     });
-    buffer.writeln('    return data;');
+    buffer.writeln('    return ${addName ? '{"$modelName":data}' : 'data'};');
     buffer.writeln('  }');
 
     // Add toString method that converts toJson() to string
@@ -68,7 +82,7 @@ class JsonToDartModel {
     buffer.writeln('  String toString() {');
     buffer.writeln('    return toJson().toString();');
     buffer.writeln('  }');
-    
+
     // End the class definition
     buffer.writeln('}');
 
