@@ -1,7 +1,7 @@
 name: json_to_dart_model_plus
 description: "A Dart package for generating Dart model code from JSON."
 version: 0.0.9
-homepage: https://spinex.io
+homepage: https://github.com/mskayali/dartModelGenerator
 
 environment:
   sdk: ">=2.19.6 <4.0.0"
