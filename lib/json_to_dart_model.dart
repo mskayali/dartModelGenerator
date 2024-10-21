@@ -1,4 +1,4 @@
-library json_to_dart_model;
+library json_to_dart_model_plus;
 
 class JsonToDartModel {
   String modelName;
